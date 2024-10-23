@@ -1,0 +1,131 @@
+{
+  "me": {
+    "email": "yash.radicalloop@gmail.com",
+    "password": "123456",
+    "first_name": "Yash P",
+    "last_name": "Marakana",
+    "phone": "9909286298",
+    "role": "admin"
+  },
+  "register": {},
+  "admin-login": [
+    {
+      "username": "YashMarakana",
+      "email": "yash.radicalloop@gmail.com",
+      "password": "12345678",
+      "id": 1
+    }
+  ],
+  "products": [
+    {
+      "product_name": "laptop",
+      "product_price": 51999
+    }
+  ],
+  "users": [
+    {
+      "email": "gybese@mailinator.com",
+      "password": "111222333",
+      "id": "5e5300ca-15c9-4aa2-bebf-feae5752d091",
+      "name": "Lysandra Burke",
+      "number": "187",
+      "role": "user",
+      "address": "Eos eos aut laborum"
+    },
+    {
+      "email": "wema@mailinator.com",
+      "password": "111222333",
+      "id": "9fca326c-54e0-4507-83ae-3f943f525780",
+      "name": "Merritt Fischer",
+      "number": "840",
+      "role": "user",
+      "address": "Inventore consequatu"
+    },
+    {
+      "email": "moli@mailinator.com",
+      "password": "$2a$10$KpfaZXksg/vTaFSttR3YGelN0Mc7TVdHzjp3BGIXZLUbaRcGT4kxq",
+      "id": "013b4727-5b4e-48ca-a04f-d7e51ed25843",
+      "name": "Damon Hardik",
+      "number": "709",
+      "role": "user",
+      "address": "Exercitation proiden"
+    },
+    {
+      "email": "syseb@mailinator.com",
+      "password": "111222333",
+      "id": "020eeeaa-fdb1-4514-b76d-0491abc0f290",
+      "name": "Skyler Roth",
+      "number": "650",
+      "role": "user",
+      "address": "Obcaecati voluptatum"
+    },
+    {
+      "email": "susaqoro@mailinator.com",
+      "password": "$2a$10$FSiBbi5nLdNhHZd41zTlp.klohBDpHoqjneFix4YklbM.wPHe.YOG",
+      "id": "4ca2636e-18da-458f-8cc5-2a386efe21b5",
+      "name": "Ethan Dominguez",
+      "number": "197",
+      "role": "Consequatur Quo pos",
+      "address": "Fugit ea hic velit "
+    },
+    {
+      "email": "tusuvy@mailinator.com",
+      "password": "$2a$10$fQVrPCO9LtHp24oRBGXHuO9FNrWXnu5R5cHO6itTlSzWz3AarvdZ2",
+      "id": "ef4a7fe2-8da6-4fbe-bd53-4f99dfaff71b",
+      "name": "Hillary Chang",
+      "number": "855",
+      "role": "Voluptate at nemo fa",
+      "address": "Cupiditate porro vit"
+    },
+    {
+      "email": "bisanugeji@mailinator.com",
+      "password": "$2a$10$vFZ7.pO9Kp1bUEVvJT53n.DIcjzoPq0K.Og9rAh/2qYjJ2Hh2WHP6",
+      "id": "56760b15-a9ef-4b96-a8d2-68ecbb5d2bec",
+      "name": "Declan Miller",
+      "number": "789",
+      "role": "Et ea culpa eum sae",
+      "address": "Illo facilis culpa n"
+    },
+    {
+      "email": "jyzage@mailinator.com",
+      "password": "$2a$10$LvSODiJswDlgRGhjulRYV.PpIKQMRqfKNCC8nXim3k6Twyylx73Jy",
+      "id": "01a31529-e48b-48ba-acc9-133f68df8e34",
+      "name": "Lacy Pollard",
+      "number": "800",
+      "role": "Eum id vel ea dicta ",
+      "address": "Ea incididunt sit q"
+    }
+  ],
+  "data": [
+    {
+      "id": "6572a2c130314b1382edbb5d",
+      "type": "Cash",
+      "status": "debited",
+      "reason": "Amout has been debited",
+      "created_at": "2023-12-07T07:53:18.000Z",
+      "finished_at": "2023-12-07T08:05:16.000Z",
+      "__v": 0,
+      "id": "6572a2c130314b1382edbb5d"
+    },
+    {
+      "id": "6572a2c130314b1382edbb55",
+      "type": "Cheque",
+      "status": "credited",
+      "reason": "Amout has been credited",
+      "created_at": "2023-12-07T07:53:18.000Z",
+      "finished_at": "2023-12-07T08:05:16.000Z",
+      "__v": 0,
+      "id": "6572a2c130314b1382edbb55"
+    },
+    {
+      "id": "6572a2c130314b1382edbb57",
+      "type": "Cash",
+      "status": "debited",
+      "reason": "Amout has been debited",
+      "created_at": "2023-12-07T07:53:18.000Z",
+      "finished_at": "2023-12-07T08:05:16.000Z",
+      "__v": 0,
+      "id": "6572a2c130314b1382edbb57"
+    }
+  ]
+}

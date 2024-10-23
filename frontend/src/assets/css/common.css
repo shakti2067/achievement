@@ -1,0 +1,335 @@
+body {
+@apply text-sm font-normal dark:bg-slate-800;
+font-family: "Inter", sans-serif;
+}
+ 
+/* Styles for button group */
+
+.btn-primary {
+    @apply flex items-center justify-center gap-2 rounded-md !bg-gray-600 dark:!bg-blue-500 px-3 py-[0.563rem] text-sm font-medium leading-5 text-white shadow-sm hover:!bg-gray-500 dark:hover:!bg-blue-400 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-all;
+  }
+  
+  .btn-danger {
+    @apply flex items-center justify-center gap-2 w-full rounded-md !bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:!bg-red-500 sm:w-auto;
+  }
+  
+  /* width */
+::-webkit-scrollbar {
+  @apply w-[0.24rem] h-[0.24rem];
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-[#f1f1f1];
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-[#888];
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#555];
+}
+
+/* form  */
+
+.form-group {
+  @apply mb-5;
+}
+
+.form-group label {
+  @apply mb-1;
+}
+
+/* Styles for sidebar */
+
+.sidebarList {
+  @apply flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium text-gray-700 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-500 items-center;
+}
+
+.sidebarListActive {
+  @apply flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium   text-gray-900 bg-gray-100 dark:bg-blue-500;
+}
+
+
+.sidebarList svg path,
+.sidebarListActive svg path {
+  @apply !stroke-[#6b7280] dark:!stroke-white;
+}
+  /* -------------- */
+
+.table_main {
+@apply border border-gray-200 dark:border-blue-500 border-solid rounded-[0.5rem] max-w-[100rem] w-full;
+max-height: calc(100vh - 212px);
+}
+
+.table_container {
+@apply min-w-full divide-y divide-gray-300 p-4;
+}
+
+.table_container thead tr th {
+@apply px-6 py-3.5 text-left font-medium text-gray-600 dark:text-white dark:bg-blue-500 uppercase align-top text-xs;
+}
+
+.table_container .table-header__inner {
+@apply flex gap-1 items-center;
+}
+
+.table_container thead tr {
+@apply bg-gray-50 rounded-lg;
+}
+
+.table_container tbody {
+@apply divide-y divide-gray-200;
+}
+
+.table_container tbody tr td {
+@apply whitespace-nowrap px-6 py-4 text-sm text-gray-700 dark:text-white font-normal;
+}
+.table_container tbody tr td:first-child {
+@apply font-medium;
+}
+
+/* modal styles */
+
+.modal-card {
+  transform: translate(-50%, -50%);
+  @apply flex justify-start items-start gap-4 rounded-lg p-6 bg-white max-w-[32rem] w-full m-auto border-[0.063rem] border-quillgrey border-solid z-[70] absolute top-1/2 left-1/2;
+}
+@screen maxSm {
+  .modal-card {
+    max-width: calc(100% - 1.563rem);
+  }
+}
+.overlay {
+  @apply overflow-hidden;
+}
+
+.overlay::after {
+  @apply bottom-0 left-0 fixed right-0 top-0 w-full h-full;
+  background-color: rgba(0, 0, 0, 0.5);
+  content: "";
+  z-index: 60;
+}
+
+/* input  */
+.form_label {
+  @apply block text-sm font-medium leading-5 text-blackolive dark:text-white;
+}
+.form_input {
+  @apply block w-full pl-3 outline-none border rounded-md py-1.5 text-blackolive dark:text-white shadow-sm  placeholder:text-gray-400 dark:bg-blue-500 sm:text-sm sm:leading-6;
+}
+
+/* form error CSS */
+.form-error {
+  @apply text-red-600 text-xs font-medium mt-1
+} 
+
+/* form validation error  */
+
+.is-error {
+  @apply !border-[#FCA5A5] !ring-0 !border;
+}
+
+/* button hover  */
+
+.button_hover:hover svg g path {
+  @apply stroke-gray-300;
+}
+.button_hover:hover svg path {
+  @apply stroke-gray-300;
+}
+.button_hover:hover {
+  @apply text-gray-300;
+}
+
+
+/* Style for pagination */
+
+.pagination {
+  @apply flex items-center justify-end mt-3;
+}
+
+.pagination span {
+  @apply text-blackolive;
+}
+
+.pagination ul {
+  @apply flex items-center;
+}
+
+.pagination ul li button,
+.pagination button,
+.pagination .page-link,
+.pagination ul li button:not(:disabled) {
+  @apply border border-quillgrey px-4 py-2 text-aurometalaaurus font-medium hover:bg-[#f3f3f3] h-10;
+}
+.pagination-is-active a {
+  @apply bg-gray-100 border !border-gray-600 !text-gray-600;
+}
+.pagination .page-item:first-child .page-link[rel="prev"],
+.pagination .page-item:last-child .page-link[rel="next"] {
+  @apply px-0 border-0 hover:bg-transparent;
+}
+.pagination .page-item:first-child .page-link[rel="prev"] button {
+  @apply h-[35px] rounded-tr-none rounded-br-none;
+}
+.pagination .page-item:last-child .page-link[rel="next"] button {
+  @apply h-[35px] rounded-tl-none rounded-bl-none;
+}
+
+.pagination ul li:first-child button {
+  @apply rounded-l-md text-aurometalaaurus;
+}
+.pagination ul li button:disabled svg {
+  @apply opacity-30;
+}
+.pagination ul li button:disabled {
+  @apply !bg-[#EAEDF0];
+}
+
+.pagination ul li:last-child button {
+  @apply rounded-r-md text-aurometalaaurus;
+}
+
+/* styles for user table  */
+.css-b62m3t-container {
+  @apply w-[27rem];
+}
+
+.user-select__menu {
+  @apply !z-[11];
+}
+
+/* That style we are using for Three JS Modal */
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #eee;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: #E0EAFC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.product-canvas {
+  @apply relative;
+  width: 55vw;
+  height: 70vh;
+  background: white;
+  box-shadow: 10px 15px 15px 6px #e2e2e2;
+  border-radius: 0px;
+  margin-bottom: 20px;
+}
+
+.colors {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @apply absolute top-0 right-0 text-black;
+  transform: translate(-320px, 210px);
+}
+
+.colors div {
+  padding: 8px;
+}
+
+.matirial {
+  display: flex;
+  flex-direction: column;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+
+.select-container {
+  position: relative;
+  width: 200px;
+}
+
+.select-container::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50px;
+  right: 18px;
+  pointer-events: none;
+  color: black;
+  font-size: 12px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.select-container h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+
+/* cards styles  */
+.cards {
+  @apply relative border-[4px] border-[#eee] p-2;
+}
+
+
+.user-select__control {
+  @apply dark:!bg-slate-800 dark:!border-blue-500;
+}
+
+.user-select__placeholder {
+  @apply dark:text-white;
+}
+
+.user-select__menu-list {
+  @apply dark:!bg-blue-500;
+}
+
+.user-select__single-value {
+  @apply dark:text-white;
+}
+
+.user-select__option {
+  @apply dark:text-white;
+}
+
+.user-select__option--is-focused {
+  @apply dark:!bg-blue-400;
+}
+
+.dark_light--icon svg path {
+  @apply dark:stroke-blue-400;
+}
+
+.back_button-arrow-left svg{
+  @apply dark:fill-white
+}
+.achievement_dropdown__input-container{
+  @apply !flex;
+}
