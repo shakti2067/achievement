@@ -1,0 +1,11 @@
+Model Information:
+* title:	dlX - Hanging Chair
+* source:	https://sketchfab.com/3d-models/dlx-hanging-chair-63c5faadcd3543e1be6755bc3c8a3920
+* author:	d-luX (https://sketchfab.com/dluX80)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "dlX - Hanging Chair" (https://sketchfab.com/3d-models/dlx-hanging-chair-63c5faadcd3543e1be6755bc3c8a3920) by d-luX (https://sketchfab.com/dluX80) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
