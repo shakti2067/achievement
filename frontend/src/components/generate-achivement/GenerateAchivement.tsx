@@ -1,36 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import clsx from "clsx";
 import * as Yup from "yup";
 import Select from "react-select";
-
 import { useFormik } from "formik";
 import Cropper from "react-cropper";
 import type { ReactCropperElement } from "react-cropper";
 import { useMutation } from "react-query";
-
 import "cropperjs/dist/cropper.css";
-
 import api from "../../shared/api";
-
 import logo from "../../assets/images/logo.png";
+import { toast } from "react-toastify";
 
 // Define the validation schema for Formik
 const validationSchema = Yup.object().shape({
   text: Yup.string().required("Text is required"),
   gender: Yup.string().required("Gender is required"),
-  email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is required"),
+  email: Yup.string().email("Invalid email format").required("Email is required"),
   phone: Yup.string().required("Phone is required"),
   address: Yup.string().required("Address is required"),
-  age: Yup.number()
-    .required("Age is required")
-    .positive("Age must be a positive number")
-    .integer("Age must be an integer"),
+  age: Yup.number().required("Age is required").positive("Age must be a positive number").integer("Age must be an integer"),
 });
 
-const GenerateAchivement = () => {
+const GenerateAchievement = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -39,6 +30,13 @@ const GenerateAchivement = () => {
   const cropperRef = useRef<ReactCropperElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imageName, setImageName] = useState("");
+  
+  // OTP state
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [phone, setPhone] = useState("");
+  const [images, setImages] = useState([]);
 
   const { mutateAsync } = useMutation(async (values: any) => {
     const formData = new FormData();
@@ -78,7 +76,6 @@ const GenerateAchivement = () => {
       phone: "",
       address: "",
       age: "",
-      achievement:"",
     },
     validationSchema,
     validateOnChange: false,
@@ -87,11 +84,11 @@ const GenerateAchivement = () => {
         await mutateAsync(values);
         setImageName(values.text);
         resetForm();
-        setUploadedImage(null); // Clear uploaded image
-        setCroppedImageUrl(null); // Clear cropped image URL
+        setUploadedImage(null);
+        setCroppedImageUrl(null);
 
         if (fileInputRef.current) {
-          fileInputRef.current.value = ""; // Reset file input
+          fileInputRef.current.value = ""; 
         }
       } catch (error) {
         console.error("Error submitting form:", error);
@@ -100,23 +97,60 @@ const GenerateAchivement = () => {
     },
   });
 
-  const [images, setImages] = useState([]);
-
   useEffect(() => {
     api
       .get("/getImage")
       .then((res) => {
         if (res.data) {
           const formattedImages = res.data.map((item: any) => ({
-            value: item.image, // Assuming 'image' is the field containing the file name
+            value: item.image,
             label: item.image,
-            image: `http://localhost:3000/Image/${item.image}`, // Image URL
+            image: `http://localhost:3000/Image/${item.image}`,
           }));
           setImages(formattedImages);
         }
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // Mutation for sending OTP
+  const sendOtpMutation = useMutation(
+    async () => await api.post('/api/send-otp', { number: phone }),
+    {
+      onSuccess: () => {
+        setIsOtpSent(true);
+      },
+      onError: (error : any) => {
+        console.error('Error sending OTP:', error);
+        toast.error(error.response.data)
+      },
+    }
+  );
+
+  // Mutation for resending OTP
+  const resendOtpMutation = useMutation(
+    async () => await api.post('/api/resend-otp', { number: phone }),
+    {
+      onError: (error:any) => {
+        console.error('Error resending OTP:', error);
+        toast.error(error.response.data)
+      },
+    }
+  );
+
+  // Mutation for verifying OTP
+  const verifyOtpMutation = useMutation(
+    async () => await api.post('/api/verify-otp', { number: phone, otp }),
+    {
+      onSuccess: () => {
+        setIsOtpVerified(true);
+      },
+      onError: (error : any) => {
+        console.error('Error verifying OTP:', error);
+        toast.error(error.response.data)
+      },
+    }
+  );
 
   const customSingleValue = ({ data }: any) => (
     <div className="flex items-center">
@@ -185,16 +219,47 @@ const GenerateAchivement = () => {
       <div className="flex h-16 items-center justify-center">
         <img src={logo} alt="logo-img" className="w-44" />
       </div>
-      {!imageUrl && (
+
+      {/* OTP and Phone Input Logic */}
+      {!isOtpVerified ? (
+        <div className="flex flex-col gap-4 mt-5 border border-oldBurgundy p-6 rounded-lg shadow-lg">
+          <input
+            type="text"
+            name="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Enter phone number"
+            className="form-input text-sm py-2 px-4 border rounded w-full"
+          />
+          {isOtpSent ? (
+            <>
+              <input
+                type="text"
+                name="otp"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter OTP"
+                className="form-input text-sm py-2 px-4 border rounded w-full mt-4"
+              />
+              <div className="flex items-center gap-2 mt-4">
+                <button onClick={() => verifyOtpMutation.mutate()} className="py-2 px-4 bg-oldBurgundy text-white rounded">
+                  Verify OTP
+                </button>
+                <button onClick={() => resendOtpMutation.mutate()}  className="py-2 px-4 bg-gray-500 text-white rounded">
+                  Resend OTP
+                </button>
+              </div>
+            </>
+          ) : (
+            <button onClick={() => sendOtpMutation.mutate()} className="py-2 px-4 bg-oldBurgundy text-white rounded mt-4">
+              Send OTP
+            </button>
+          )}
+        </div>
+      ) : (
         <>
-          <form
-            onSubmit={formik.handleSubmit}
-            className="flex flex-col gap-4 mt-5 border p-6 rounded-lg shadow-lg bg-seashell border-oldBurgundy"
-          >
-            <h3 className="text-lg font-semibold mb-2 text-center text-oldBurgundy">
-              Generate your Achivement
-            </h3>
-            <div>
+          <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 mt-5 border border-oldBurgundy p-6 rounded-lg shadow-lg">
+          <div>
               <input
                 type="text"
                 name="text"
@@ -202,7 +267,7 @@ const GenerateAchivement = () => {
                 onChange={formik.handleChange}
                 placeholder="Enter your name"
                 className={clsx(
-                  "form-input text-sm py-2 px-4 border rounded w-full outline-none border-oldBurgundy hover:border-oldBurgundy focus:border-oldBurgundy bg-seashell",
+                  "form-input text-sm py-2 px-4 border rounded w-full outline-none",
                   { "border-red-500": formik.errors.text }
                 )}
               />
@@ -218,11 +283,10 @@ const GenerateAchivement = () => {
                 value={formik.values.gender}
                 onChange={formik.handleChange}
                 className={clsx(
-                  "form-input text-sm py-2 px-4 border rounded w-full outline-none focus:outline-none border-oldBurgundy focus:border-[1px] focus:shadow-none hover:border-oldBurgundy focus:border-oldBurgundy bg-seashell",
+                  "form-input text-sm py-2 px-4 border rounded w-full outline-none focus:outline-none focus:!border-[#aaa] focus:border-[1px] focus:shadow-none",
                   { "border-red-500": formik.errors.gender }
                 )}
-              >  
-              
+              >
                 <option value="" disabled>
                   Select gender
                 </option>
@@ -263,7 +327,7 @@ const GenerateAchivement = () => {
                 onChange={formik.handleChange}
                 placeholder="Enter email"
                 className={clsx(
-                  "form-input text-sm py-2 px-4 border rounded w-full outline-none border-oldBurgundy hover:border-oldBurgundy focus:border-oldBurgundy bg-seashell",
+                  "form-input text-sm py-2 px-4 border rounded w-full outline-none",
                   { "border-red-500": formik.errors.email }
                 )}
               />
@@ -281,7 +345,7 @@ const GenerateAchivement = () => {
                 onChange={formik.handleChange}
                 placeholder="Enter phone"
                 className={clsx(
-                  "form-input text-sm py-2 px-4 border rounded w-full outline-none border-oldBurgundy hover:border-oldBurgundy focus:border-oldBurgundy bg-seashell",
+                  "form-input text-sm py-2 px-4 border rounded w-full outline-none",
                   { "border-red-500": formik.errors.phone }
                 )}
               />
@@ -299,7 +363,7 @@ const GenerateAchivement = () => {
                 onChange={formik.handleChange}
                 placeholder="Enter address"
                 className={clsx(
-                  "form-input text-sm py-2 px-4 border rounded w-full outline-none border-oldBurgundy hover:border-oldBurgundy focus:border-oldBurgundy bg-seashell",
+                  "form-input text-sm py-2 px-4 border rounded w-full outline-none",
                   { "border-red-500": formik.errors.address }
                 )}
               />
@@ -317,7 +381,7 @@ const GenerateAchivement = () => {
                 onChange={formik.handleChange}
                 placeholder="Enter age"
                 className={clsx(
-                  "form-input text-sm py-2 px-4 border rounded w-full outline-none border-oldBurgundy hover:border-oldBurgundy focus:border-oldBurgundy bg-seashell",
+                  "form-input text-sm py-2 px-4 border rounded w-full outline-none",
                   { "border-red-500": formik.errors.age }
                 )}
               />
@@ -329,10 +393,10 @@ const GenerateAchivement = () => {
             </div>
             <div>
               <div className="flex items-center justify-center w-full">
-                <label className="flex flex-col items-center justify-center w-full h-[10rem] border-2 border-oldBurgundy border-dashed rounded-lg cursor-pointer bg-seashell dark:hover:border-gray-500 hover:border-oldBurgundy focus:border-oldBurgundy">
+                <label className="flex flex-col items-center justify-center w-full h-[10rem] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg
-                      className="w-8 h-8 mb-4 text-oldBurgundy dark:text-gray-400"
+                      className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -346,10 +410,10 @@ const GenerateAchivement = () => {
                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                       />
                     </svg>
-                    <p className="mb-2 text-sm text-oldBurgundy dark:text-gray-400">
+                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                       <span className="font-semibold">Click to upload</span>
                     </p>
-                    <p className="text-xs text-oldBurgundy dark:text-gray-400">
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       SVG, PNG, JPG
                     </p>
                   </div>
@@ -407,7 +471,7 @@ const GenerateAchivement = () => {
                 <button
                   type="button"
                   onClick={handleEdit}
-                  className="btn btn-secondary py-1 px-1 bg-gray-500 text-white hover:bg-[#49263d] absolute top-[-5px] right-[-8px] rounded-full m-0 h-6 w-6"
+                  className="btn btn-secondary py-1 px-1 bg-gray-500 text-white hover:bg-gray-600 absolute top-[-5px] right-[-8px] rounded-full m-0 h-6 w-6"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -427,22 +491,20 @@ const GenerateAchivement = () => {
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="py-2 px-4 bg-oldBurgundy text-white rounded hover:opacity-[0.8]"
+              className="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-600"
             >
               {formik.isSubmitting ? "Generating..." : "Generate Image"}
             </button>
           </form>
         </>
       )}
-
+      
+      {/* Render generated image */}
       {imageUrl && (
-        <div className="mt-8 border border-[#aaa] p-6 rounded-lg">
+        <div className="mt-8 border p-6 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Generated Image:</h3>
           <img src={imageUrl} alt="Generated Achievement" />
-          <button
-            onClick={downloadImage}
-            className="py-2 px-4 bg-emerald-500 text-white rounded hover:bg-emerald-600 mt-4 w-full transition-all shadow-lg"
-          >
+          <button onClick={downloadImage} className="py-2 px-4 bg-green-500 text-white rounded mt-4">
             Download Image
           </button>
         </div>
@@ -451,4 +513,4 @@ const GenerateAchivement = () => {
   );
 };
 
-export default GenerateAchivement;
+export default GenerateAchievement;
