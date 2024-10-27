@@ -3,6 +3,7 @@ import Button from "../../shared/button/Button";
 import ModalPortal from "../../shared/modal/Modal";
 import AddAchivementModal from "./AddAchivementModal";
 import api from "../../shared/api";
+import clsx from "clsx";
 
 const Achivements = () => {
   const [isAddAchivementModal, setIsAddAchivementModal] = useState(false);
@@ -74,11 +75,11 @@ const Achivements = () => {
         type="button"
         variant="primary"
         onClick={onClickAddAchivement}
-        className="ml-auto ring-0 shadow-none hover:bg-[#eee]"
+        className="ml-auto ring-0 shadow-none hover:opacity-[0.8]"
       />
 
       {/* Image Listing */}
-      <div className="flex flex-wrap gap-4 mt-14">
+      <div className={clsx("flex flex-wrap gap-4 mt-14", {"justify-center mt-24" : images.length === 0})}>
         {images.length > 0 ? (
           images.map((image, index) => (
             <div
@@ -93,7 +94,7 @@ const Achivements = () => {
             </div>
           ))
         ) : (
-          <p className="text-[#6e6e6e]">No images uploaded yet.</p>
+          <p className="text-oldBurgundy font-medium">No images uploaded yet.</p>
         )}
       </div>
 

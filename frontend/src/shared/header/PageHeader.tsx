@@ -15,7 +15,7 @@ const PageHeader = ({ label, children }: PageHeaderProps) => {
         "flex justify-start items-center gap-[1.125rem] mb-[1.875rem] flex-wrap capitalize"
       )}
     >
-      <p className="text-2xl text-blackolive">{label}</p>
+      <p className="text-2xl text-oldBurgundy">{label}</p>
       {children && children}
     </div>
   );

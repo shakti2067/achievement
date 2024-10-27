@@ -32,7 +32,7 @@ const AchivementList = () => {
               <th scope="col">Action</th>
             </tr>
           </thead>
-          <tbody className="max-h-[calc(100vh-28rem)] dark:!border-blue-500">
+          <tbody className="max-h-[calc(100vh-28rem)]">
             {imagesData &&
               imagesData?.data?.map((image: ImageProp) => (
                 <tr className="dark:!border-blue-500" key={image._id}>

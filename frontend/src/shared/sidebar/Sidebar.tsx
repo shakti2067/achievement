@@ -7,9 +7,9 @@ import { Dialog, Transition } from "@headlessui/react";
 
 import { navigation } from "../helper/sidebar";
 
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
 
-// import { ReactComponent as CompanyLogo } from "../../assets/images/logo.svg";
+// import { ReactComponent as CompanyLogo } from "../../assets/images/logo.png";
 
 const Sidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,7 +30,7 @@ const Sidebar = () => {
     <>
       <button
         type="button"
-        className="p-2.5 text-gray-700 lg:hidden absolute top-[10px] left-2 z-[111]"
+        className="p-2.5 text-seashell lg:hidden absolute top-[10px] left-2 z-[111]"
         onClick={() => setSidebarOpen(true)}
       >
         <span className="sr-only">Open sidebar</span>
@@ -107,8 +107,8 @@ const Sidebar = () => {
                                   <item.icon
                                     className={clsx(
                                       item.current
-                                        ? "text-gray-600"
-                                        : "text-gray-400 group-hover:text-gray-600",
+                                        ? "text-[#49263d]"
+                                        : "text-gray-400 group-hover:text-[#49263d]",
                                       "h-6 w-6 shrink-0"
                                     )}
                                     aria-hidden="true"
@@ -131,9 +131,9 @@ const Sidebar = () => {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-2 overflow-y-auto border-r border-gray-200 dark:border-blue-500 bg-white px-4 pb-4 dark:bg-slate-800 dark:text-white">
-            <div className="flex h-16 shrink-0 items-center">
-              <img src={logo} alt="logo-img" className="w-36" />
+          <div className="flex grow flex-col gap-y-2 overflow-y-auto border-r border-oldBurgundy dark:border-blue-500 bg-seashell px-4 pb-4 dark:bg-slate-800 dark:text-white">
+            <div className="flex h-16 shrink-0 items-center mt-2">
+              <img src={logo} alt="logo-img" className="w-44" />
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -150,8 +150,8 @@ const Sidebar = () => {
                           <item.icon
                             className={clsx(
                               item.current
-                                ? "text-gray-600"
-                                : "text-gray-400 group-hover:text-gray-600",
+                                ? "text-[#49263d]"
+                                : "text-gray-400 group-hover:text-[#49263d]",
                               "h-6 w-6 shrink-0"
                             )}
                             aria-hidden="true"

@@ -26,7 +26,7 @@ function DebouncedInput({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
-        className="w-56 py-2 pl-3 pr-10 text-gray-900 bg-white p-1 border border-quillgrey rounded-md outline-none text-xs shadow placeholder-gray-500 "
+        className="w-56 py-2 pl-3 pr-10 text-gray-900 bg-white p-1 border border-oldBurgundy rounded-md outline-none text-xs shadow placeholder-gray-500 "
       />
       <button
         className="absolute top-[7px] h-4 w-4 right-3 py-0 z-10"
