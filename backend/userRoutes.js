@@ -105,7 +105,9 @@ router.post("/send-otp", async (req, res) => {
       if (existingUser.isOtpVerified) {
         return res.status(400).send("Number already exists and is verified.");
       } else {
-        return res.status(400).send("Your number is not verified yet.");
+        return res
+          .status(400)
+          .send("Your number is not verified yet. Please verify");
       }
     }
 
@@ -118,9 +120,19 @@ router.post("/send-otp", async (req, res) => {
       otp,
     };
 
-    await UserModal.create(otpEntry);
+    // Send otp to mobile number
 
-    return res.status(200).send("OTP sent successfully.");
+    let otpUrl = `https://msg.flitsms.in/fe/api/v1/multiSend?username=sardhar.trans&password=ziTu3&unicode=false&from=SMSRDR&to=${number}&dltPrincipalEntityId=1301161175377152817&dltContentId=1307161529391680642&text=Jay Shree Swaminarayan ! ${otp} is your OTP for Registration. Welcome to Sardhardham`;
+
+    let data = await fetch(otpUrl);
+
+    if (data?.status == 200) {
+      await UserModal.create(otpEntry);
+
+      return res.status(200).send("OTP sent successfully.");
+    } else {
+      return res.status(400).send("Error while sending OTP.");
+    }
   } catch (error) {
     console.error("Error sending OTP:", error);
     return res.status(500).send("An error occurred while sending the OTP.");
@@ -158,11 +170,19 @@ router.post("/resend-otp", async (req, res) => {
     // Create OTP entry in the database
     existingUser.otp = otp;
 
-    // save otp
+    // Send otp to mobile number
 
-    let save = await existingUser.save();
+    let otpUrl = `https://msg.flitsms.in/fe/api/v1/multiSend?username=sardhar.trans&password=ziTu3&unicode=false&from=SMSRDR&to=${number}&dltPrincipalEntityId=1301161175377152817&dltContentId=1307161529391680642&text=Jay Shree Swaminarayan  ${otp} is your OTP for Registration. Welcome to Sardhardham`;
 
-    return res.status(200).send("OTP resent successfully.");
+    let data = await fetch(otpUrl);
+
+    if (data?.status == 200) {
+      let save = await existingUser.save();
+
+      return res.status(200).send("OTP resent successfully.");
+    } else {
+      return res.status(400).send("Error while sending OTP.");
+    }
   } catch (error) {
     console.error("Error sending OTP:", error);
     return res.status(500).send("An error occurred while sending the OTP.");
