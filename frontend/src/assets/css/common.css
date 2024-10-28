@@ -5,6 +5,10 @@ font-family: "Inter", sans-serif;
  
 /* Styles for button group */
 
+button {
+  @apply hover:opacity-[0.8] transition-all;
+}
+
 .btn-primary {
     @apply flex items-center justify-center gap-2 rounded-md !bg-oldBurgundy dark:!bg-blue-500 px-3 py-[0.563rem] text-sm font-medium leading-5 text-white shadow-sm hover:!opacity-[0.8] dark:hover:!bg-blue-400 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
   }
