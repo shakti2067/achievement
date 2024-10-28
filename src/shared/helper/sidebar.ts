@@ -19,11 +19,19 @@ export const navigation = [
     activeMenu: "/achivements",
   },
   {
-    name: "User List",
+    name: "Achivement List",
     href: "/achivement-list",
     icon: CubeIcon,
     current: false,
     action: "GENERATE_ACHIVEMENT",
     activeMenu: "/achivement-list",
   },
+  // {
+  //   name: "ID Cards",
+  //   href: "/id-cards",
+  //   icon: CreditCardIcon,
+  //   current: false,
+  //   action: "ID_CARDS",
+  //   activeMenu: "/id-cards",
+  // },
 ];

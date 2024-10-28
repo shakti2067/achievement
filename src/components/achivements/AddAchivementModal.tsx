@@ -38,7 +38,7 @@ const AddAchivementModal = ({ onClose, onUpload }: any) => {
     <form onSubmit={handleSubmit}>
       <div className="modal-card justify-center">
         <div className="w-full">
-          <h3 className="text-lg text-blackolive mb-[0.875rem] font-semibold">
+          <h3 className="text-lg text-oldBurgundy mb-[0.875rem] font-semibold">
             Add Achievement
           </h3>
 
@@ -50,7 +50,7 @@ const AddAchivementModal = ({ onClose, onUpload }: any) => {
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border border-oldBurgundy p-2 rounded bg-seashell"
             />
           </div>
 
@@ -63,7 +63,7 @@ const AddAchivementModal = ({ onClose, onUpload }: any) => {
                 placeholder="X"
                 onChange={(e) => setX(Number(e.target.value))}
                 required
-                className="w-full border border-gray-300 p-2 rounded"
+                className="w-full border border-oldBurgundy p-2 rounded bg-seashell"
               />
             </div>
 
@@ -75,7 +75,7 @@ const AddAchivementModal = ({ onClose, onUpload }: any) => {
                 placeholder="Y"
                 onChange={(e) => setY(Number(e.target.value))}
                 required
-                className="w-full border border-gray-300 p-2 rounded"
+                className="w-full border border-oldBurgundy p-2 rounded bg-seashell"
               />
             </div>
           </div>
@@ -85,7 +85,7 @@ const AddAchivementModal = ({ onClose, onUpload }: any) => {
             className="flex items-center justify-center w-full mb-4"
             onChange={handleFileChange}
           >
-            <label className="flex flex-col items-center justify-center w-full h-[10rem] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-100">
+            <label className="flex flex-col items-center justify-center w-full h-[10rem] border-2 border-oldBurgundy border-dashed rounded-lg cursor-pointer hover:bg-gray-100">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
                   className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"

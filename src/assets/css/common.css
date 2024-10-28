@@ -1,20 +1,24 @@
 body {
-@apply text-sm font-normal dark:bg-slate-800;
+@apply text-sm font-normal bg-seashell;
 font-family: "Inter", sans-serif;
 }
  
 /* Styles for button group */
 
+button {
+  @apply hover:opacity-[0.8] transition-all;
+}
+
 .btn-primary {
-    @apply flex items-center justify-center gap-2 rounded-md !bg-gray-600 dark:!bg-blue-500 px-3 py-[0.563rem] text-sm font-medium leading-5 text-white shadow-sm hover:!bg-gray-500 dark:hover:!bg-blue-400 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    @apply flex items-center justify-center gap-2 rounded-md !bg-oldBurgundy dark:!bg-blue-500 px-3 py-[0.563rem] text-sm font-medium leading-5 text-white shadow-sm hover:!opacity-[0.8] dark:hover:!bg-blue-400 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
   }
   
   .btn-secondary {
-    @apply mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-all;
+    @apply mt-3 inline-flex w-full justify-center rounded-md bg-seashell px-3 py-2 text-sm shadow-sm ring-1 ring-inset ring-gray-300 hover:!opacity-[0.8] sm:mt-0 sm:w-auto transition-all;
   }
   
   .btn-danger {
-    @apply flex items-center justify-center gap-2 w-full rounded-md !bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:!bg-red-500 sm:w-auto;
+    @apply flex items-center justify-center gap-2 w-full rounded-md !bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:!opacity-[0.8] sm:w-auto;
   }
   
   /* width */
@@ -50,22 +54,27 @@ font-family: "Inter", sans-serif;
 /* Styles for sidebar */
 
 .sidebarList {
-  @apply flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium text-gray-700 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-500 items-center;
+  @apply flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium text-gray-700 hover:text-white hover:bg-[#633b56] dark:hover:bg-blue-500 items-center transition-all;
 }
 
 .sidebarListActive {
-  @apply flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium   text-gray-900 bg-gray-100 dark:bg-blue-500;
+  @apply flex gap-x-3 rounded-md p-2 text-sm leading-6 font-medium bg-[#633b56] text-white;
 }
 
+.sidebarList:hover svg path {
+  @apply !stroke-white;
+}
 
-.sidebarList svg path,
-.sidebarListActive svg path {
+.sidebarList svg path{
   @apply !stroke-[#6b7280] dark:!stroke-white;
+}
+.sidebarListActive svg path {
+  @apply !stroke-white dark:!stroke-white;
 }
   /* -------------- */
 
 .table_main {
-@apply border border-gray-200 dark:border-blue-500 border-solid rounded-[0.5rem] max-w-[100rem] w-full;
+@apply border border-oldBurgundy dark:border-blue-500 border-solid rounded-[0.5rem] max-w-[100rem] w-full;
 max-height: calc(100vh - 212px);
 }
 
@@ -74,7 +83,11 @@ max-height: calc(100vh - 212px);
 }
 
 .table_container thead tr th {
-@apply px-6 py-3.5 text-left font-medium text-gray-600 dark:text-white dark:bg-blue-500 uppercase align-top text-xs;
+@apply px-6 py-3.5 text-left font-medium text-white dark:text-white dark:bg-blue-500 uppercase align-top text-xs;
+}
+
+.table_container tbody tr {
+  @apply !border !border-b-oldBurgundy last:border-none;
 }
 
 .table_container .table-header__inner {
@@ -82,7 +95,7 @@ max-height: calc(100vh - 212px);
 }
 
 .table_container thead tr {
-@apply bg-gray-50 rounded-lg;
+@apply bg-oldBurgundy rounded-lg;
 }
 
 .table_container tbody {
@@ -100,7 +113,7 @@ max-height: calc(100vh - 212px);
 
 .modal-card {
   transform: translate(-50%, -50%);
-  @apply flex justify-start items-start gap-4 rounded-lg p-6 bg-white max-w-[32rem] w-full m-auto border-[0.063rem] border-quillgrey border-solid z-[70] absolute top-1/2 left-1/2;
+  @apply flex justify-start items-start gap-4 rounded-lg p-6 bg-seashell max-w-[32rem] w-full m-auto border-[0.063rem] border-oldBurgundy border-solid z-[70] absolute top-1/2 left-1/2;
 }
 @screen maxSm {
   .modal-card {
@@ -120,10 +133,10 @@ max-height: calc(100vh - 212px);
 
 /* input  */
 .form_label {
-  @apply block text-sm font-medium leading-5 text-blackolive dark:text-white;
+  @apply block text-sm font-medium leading-5 text-oldBurgundy dark:text-white;
 }
 .form_input {
-  @apply block w-full pl-3 outline-none border rounded-md py-1.5 text-blackolive dark:text-white shadow-sm  placeholder:text-gray-400 dark:bg-blue-500 sm:text-sm sm:leading-6;
+  @apply block w-full pl-3 outline-none border rounded-md py-1.5 text-oldBurgundy dark:text-white shadow-sm  placeholder:text-gray-400 dark:bg-blue-500 sm:text-sm sm:leading-6;
 }
 
 /* form error CSS */
@@ -157,7 +170,7 @@ max-height: calc(100vh - 212px);
 }
 
 .pagination span {
-  @apply text-blackolive;
+  @apply text-oldBurgundy;
 }
 
 .pagination ul {
@@ -168,10 +181,10 @@ max-height: calc(100vh - 212px);
 .pagination button,
 .pagination .page-link,
 .pagination ul li button:not(:disabled) {
-  @apply border border-quillgrey px-4 py-2 text-aurometalaaurus font-medium hover:bg-[#f3f3f3] h-10;
+  @apply border border-oldBurgundy px-4 py-2 text-aurometalaaurus font-medium hover:bg-[#f3f3f3] h-10;
 }
 .pagination-is-active a {
-  @apply bg-gray-100 border !border-gray-600 !text-gray-600;
+  @apply bg-gray-100 border !border-oldBurgundy !text-oldBurgundy;
 }
 .pagination .page-item:first-child .page-link[rel="prev"],
 .pagination .page-item:last-child .page-link[rel="next"] {

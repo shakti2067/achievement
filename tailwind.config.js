@@ -18,6 +18,9 @@ export default {
         cosmiclatte: "#FFFBEB",
         aliceblue: "#EFF5FF",
         ube: "#7E7CCC",
+        seashell: "#FBF5EF",
+        oldBurgundy: "#49263d",
+        seashell: "#FBF5EF",
       },
       screens: {
         sm: "640px",

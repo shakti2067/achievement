@@ -54,7 +54,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route
-                path="generate-achivement"
+                path="mahuva-utsav"
                 element={<GenerateAchivement />}
               />
 

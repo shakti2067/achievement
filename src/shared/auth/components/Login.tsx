@@ -9,6 +9,8 @@ import { ReactComponent as CheckedEyeIcon } from "../../../assets/images/icons/c
 
 import Style from "../../../assets/css/auth.module.css";
 import { useState } from "react";
+import logo from "../../../assets/images/logo-white-font.png";
+
 
 const Login = () => {
   const { mutate: loginFn } = useLogin();
@@ -24,11 +26,15 @@ const Login = () => {
   };
 
   return (
+    <div className="mt-[8rem]">
     <form className={Style.loginForm} onSubmit={handleSubmit}>
-      <h3 className="py-8 text-[24px]">Login</h3>
+       <div className="flex h-20 items-center justify-center mb-6 bg-oldBurgundy rounded-lg">
+        <img src={logo} alt="logo-img" className="w-44" />
+      </div>
+      <h3 className="mb-6 text-[24px] font-semibold text-center text-oldBurgundy">Login Authentication</h3>
       <div className="mb-6">
         <label htmlFor="email" className={Style.formLabel}>
-          Your Username
+          Username
         </label>
         <input
           type="text"
@@ -36,7 +42,7 @@ const Login = () => {
           onChange={handleChange}
           value={values.email}
           className={Style.formInput}
-          placeholder="name@flowbite.com"
+          placeholder="Enter Username"
         />
 
         {errors.email ? (
@@ -47,7 +53,7 @@ const Login = () => {
       </div>
       <div className="mb-6 relative">
         <label htmlFor="password" className={Style.formLabel}>
-          Your password
+          Password
         </label>
         <input
           type={showPassword ? "text" : "password"}
@@ -55,6 +61,7 @@ const Login = () => {
           onChange={handleChange}
           value={values.password}
           className={Style.formInput}
+          placeholder="Enter Password"
         />
         <button
           type="button"
@@ -71,6 +78,7 @@ const Login = () => {
       </div>
       <Button type="submit" className={Style.loginButton} title="Login" />
     </form>
+    </div>
   );
 };
 
