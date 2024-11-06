@@ -220,6 +220,7 @@ const GenerateAchievement = () => {
     }
   };
 
+  
   return (
     <div className="px-4 py-8 max-w-[25rem] mx-auto flex flex-col h-screen justify-center">
       {/* OTP and Phone Input Logic */}
