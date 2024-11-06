@@ -38,6 +38,7 @@ const Header = () => {
     setMenuOpen(false);
   });
 
+
   return (
     <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-[#49263d] bg-[#49263d] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
       <div className="flex justify-end flex-1 gap-x-4 self-stretch lg:gap-x-6">
@@ -52,10 +53,11 @@ const Header = () => {
           <Menu as="div" className="relative">
             <Menu.Button
               ref={profileRef}
-              className="-m-1.5 flex items-center justify-center p-2 rounded-[50%] bg-[#eee] border border-slate-800 w-10 h-10"
+              className="-m-1.5 flex items-center justify-center p-2 font-bold rounded-[50%] bg-[#eee] border border-slate-800 w-10 h-10"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              {capitalizeFirstLetter(user?.email)}
+              {capitalizeFirstLetter(user?.[0]?.first_name)}
+              {capitalizeFirstLetter(user?.[0]?.last_name)}  
             </Menu.Button>
             <Transition
               as={Fragment}
