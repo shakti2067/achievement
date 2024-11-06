@@ -29,7 +29,7 @@ const AchivementList = () => {
               <th scope="col">Gender</th>
               <th scope="col">Age</th>
               <th scope="col">Address</th>
-              <th scope="col">Action</th>
+              {/* <th scope="col">Action</th> */}
             </tr>
           </thead>
           <tbody className="max-h-[calc(100vh-28rem)]">
@@ -42,7 +42,7 @@ const AchivementList = () => {
                   <td>{image.gender}</td>
                   <td>{image.age}</td>
                   <td>{image.address}</td>
-                  <td className="border-none">
+                  {/* <td className="border-none">
                     <div className="flex justify-start gap-4 items-center">
                       <button
                         type="button"
@@ -64,7 +64,7 @@ const AchivementList = () => {
                         </svg>
                       </button>
                     </div>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
           </tbody>
