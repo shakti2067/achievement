@@ -9,7 +9,7 @@ import { useMutation } from "react-query";
 import "cropperjs/dist/cropper.css";
 import api from "../../shared/api";
 import logo from "../../assets/images/logo-white-font.png";
-import welcomeBanner from "../../assets/images/mahuva-utsav-temp.jpeg";
+// import welcomeBanner from "../../assets/images/mahuva-utsav-temp.jpeg";
 import { toast } from "react-toastify";
 
 // Define the validation schema for Formik
@@ -229,13 +229,13 @@ const GenerateAchievement = () => {
           <div className="flex h-20 items-center justify-center bg-oldBurgundy rounded-lg">
             <img src={logo} alt="logo-img" className="w-44" />
           </div>
-          <div className="my-3">
+          {/* <div className="my-3">
             <img
               src={welcomeBanner}
               alt="logo-img"
               className="w-full rounded-lg"
             />
-          </div>
+          </div> */}
           <div>
             <label
               htmlFor="phone"
@@ -255,12 +255,12 @@ const GenerateAchievement = () => {
           {isOtpSent ? (
             <>
               <input
-                type="text"
+                type="number"
                 name="otp"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
                 placeholder="Enter OTP"
-                className="form-input text-sm py-2 px-4 border rounded w-full mt-4  border-oldBurgundy"
+                className="form-input text-sm py-2 px-4 border rounded w-full mt-4 border-oldBurgundy appearance-none"
               />
               <div className="flex items-center gap-2 mt-4">
                 <button
@@ -396,25 +396,7 @@ const GenerateAchievement = () => {
                     {formik.errors.email}
                   </div>
                 )}
-              </div>
-              {/* <div>
-              <input
-                type="text"
-                name="phone"
-                value={formik.values.phone}
-                onChange={formik.handleChange}
-                placeholder="Enter phone"
-                className={clsx(
-                  "form-input text-sm py-2 px-4 rounded w-full outline-none border border-oldBurgundy",
-                  { "border-red-500": formik.errors.phone }
-                )}
-              />
-              {formik.errors.phone && (
-                <div className="text-red-500 text-xs mt-1">
-                  {formik.errors.phone}
-                </div>
-              )}
-            </div> */}
+              </div> 
               <div className="mb-4">
                 <label
                   htmlFor="address"
@@ -545,7 +527,7 @@ const GenerateAchievement = () => {
                   <button
                     type="button"
                     onClick={handleEdit}
-                    className="btn btn-secondary py-1 px-1 bg-gray-500 text-white hover:bg-gray-600 absolute top-[-6px] right-[-1px] rounded-full m-0 h-6 w-6"
+                    className="btn btn-secondary py-1 px-1 bg-oldBurgundy text-white hover:opacity-[0.8] absolute top-[-6px] right-[-3px] rounded-full m-0 h-6 w-6"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

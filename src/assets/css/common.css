@@ -346,3 +346,11 @@ select:focus {
 .achievement_dropdown__input-container{
   @apply !flex;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
