@@ -4,8 +4,7 @@ import { TOKEN } from "../helper/constant";
 import { Menu, Transition } from "@headlessui/react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../provider/user-provider/UserProvider";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import { useUser } from "../provider/user-provider/UserProvider"; 
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,15 +12,7 @@ const Header = () => {
 
   const profileRef = useRef(null);
 
-  const navigate = useNavigate();
-
-  // for dark mode
-  const [dark, setDark] = useState(false);
-
-  const darkModeHandler = () => {
-    setDark(!dark);
-    document.documentElement.classList.toggle("dark");
-  };
+  const navigate = useNavigate(); 
 
   const onClickProfile = () => {
     navigate(`/profile`);
