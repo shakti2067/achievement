@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import clsx from "clsx";
 import * as Yup from "yup";
 import Select from "react-select";
@@ -6,11 +7,14 @@ import { useFormik } from "formik";
 import Cropper from "react-cropper";
 import type { ReactCropperElement } from "react-cropper";
 import { useMutation } from "react-query";
-import "cropperjs/dist/cropper.css";
+import { toast } from "react-toastify";
+
 import api from "../../shared/api";
+
+import "cropperjs/dist/cropper.css";
+
 import logo from "../../assets/images/logo-white-font.png";
 // import welcomeBanner from "../../assets/images/mahuva-utsav-temp.jpeg";
-import { toast } from "react-toastify";
 
 // Define the validation schema for Formik
 const validationSchema = Yup.object().shape({
@@ -19,7 +23,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  // phone: Yup.string().required("Phone is required"),
+  phone: Yup.string().required("Phone is required"),
   address: Yup.string().required("Address is required"),
   age: Yup.number()
     .required("Age is required")
@@ -27,7 +31,7 @@ const validationSchema = Yup.object().shape({
     .integer("Age must be an integer"),
 });
 
-const GenerateAchievement = () => {
+const MembershipCard = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -60,7 +64,7 @@ const GenerateAchievement = () => {
     }
 
     try {
-      const response = await api.post("/api/images/generate-image", formData, {
+      const response = await api.post("/api/generate-id-card", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "arraybuffer",
       });
@@ -121,7 +125,7 @@ const GenerateAchievement = () => {
 
   // Mutation for sending OTP
   const sendOtpMutation = useMutation(
-    async () => await api.post("/api/send-otp", { number: phone }),
+    async () => await api.post("/api/send-otp-to-id-card-user", { number: phone }),
     {
       onSuccess: () => {
         setIsOtpSent(true);
@@ -135,7 +139,7 @@ const GenerateAchievement = () => {
 
   // Mutation for resending OTP
   const resendOtpMutation = useMutation(
-    async () => await api.post("/api/resend-otp", { number: phone }),
+    async () => await api.post("/api/resend-otp-to-id-card-user", { number: phone }),
     {
       onError: (error: any) => {
         console.error("Error resending OTP:", error);
@@ -146,7 +150,7 @@ const GenerateAchievement = () => {
 
   // Mutation for verifying OTP
   const verifyOtpMutation = useMutation(
-    async () => await api.post("/api/verify-otp", { number: phone, otp }),
+    async () => await api.post("/api/verify-otp-id-card-user", { number: phone, otp }),
     {
       onSuccess: () => {
         setIsOtpVerified(true);
@@ -597,4 +601,4 @@ const GenerateAchievement = () => {
   );
 };
 
-export default GenerateAchievement;
+export default MembershipCard;

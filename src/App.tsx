@@ -22,6 +22,7 @@ import UserSignup from "./modules/users/auth/signup/UserSignup";
 import AuthenticatedApp from "./shared/auth/components/AuthenticatedApp";
 import GenerateAchivement from "./components/generate-achivement/GenerateAchivement";
 import Dashboard from "./components/dashboard/Dashboard";
+import MembershipCard from "./components/membership-card/MembershipCard";
 
 function App() {
   const queryClient = new QueryClient();
@@ -56,6 +57,10 @@ function App() {
               <Route
                 path="mahuva-utsav"
                 element={<GenerateAchivement />}
+              />
+              <Route
+                path="membership-card"
+                element={<MembershipCard />}
               />
 
               <Route
